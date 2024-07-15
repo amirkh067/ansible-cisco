@@ -10,7 +10,7 @@
         hostvars: "{{ hostvars }}"
 
     - name: Run Python script with credentials and commands
-      script: cisco_router_config_ipadd.py
+      script: cisco_router_config_ipaddV3.py
       args:
         executable: /usr/bin/python3
       environment:
