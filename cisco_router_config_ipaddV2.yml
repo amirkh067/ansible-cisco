@@ -16,3 +16,7 @@
       environment:
         HOSTVARS: "{{ hostvars | to_json }}"
         COMMANDS_FILE: "commands.txt"
+
+    - name: Display script output
+      debug:
+        msg: "{{ script_output.stdout }}"
