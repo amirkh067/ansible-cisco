@@ -1,7 +1,8 @@
 ---
 - name: Execute Python script for configuration changes
   hosts: all
-  gather_facts: no
+  gather_facts: yes
+  connection: local
 
   tasks:
     - name: Fetch hosts and credentials
