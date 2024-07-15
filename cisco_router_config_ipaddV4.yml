@@ -1,0 +1,23 @@
+---
+- name: Telnet to Cisco Router and run show config
+  hosts: all
+  gather_facts: no
+  connection: local
+
+  tasks:
+    - name: Telnet to Cisco router and run show config command
+      expect:
+        command: telnet {{ ansible_host }}
+        responses:
+          'Username:': '{{ ansible_user }}'
+          'Password:': '{{ ansible_password }}'
+          'router#': 
+            - 'terminal length 0'
+            - 'show config'
+            - 'exit'
+      register: telnet_output
+      ignore_errors: yes  # Ignore errors in case of failed responses
+
+    - name: Print command output
+      debug:
+        var: telnet_output.stdout_lines
