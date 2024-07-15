@@ -11,7 +11,7 @@
 
     - name: Run Python script with credentials and commands
       command: >
-        /usr/bin/python3 cisco_router_config_ipadd.py
+        /usr/bin/python3 cisco_router_config_ipaddV2.py
       environment:
         HOSTVARS: "{{ hostvars | to_json }}"
         COMMANDS_FILE: "commands.txt"
