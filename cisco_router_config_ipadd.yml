@@ -1,7 +1,8 @@
 ---
 - name: Execute Python script for configuration changes
-  hosts: cisco
+  hosts: all
   gather_facts: no
+  connection: local
 
   tasks:
     - name: Fetch hosts and credentials
