@@ -1,0 +1,24 @@
+---
+- name: Execute Python script for configuration changes
+  hosts: all
+  gather_facts: no
+  connection: local
+
+  tasks:
+    - name: Fetch hosts and credentials
+      set_fact:
+        hostvars: "{{ hostvars }}"
+
+    - name: Run Python script with credentials and commands
+      command: >
+        /usr/bin/python3 cisco_router_config_ipadd.py
+      environment:
+        HOSTVARS: "{{ hostvars | to_json }}"
+        COMMANDS_FILE: "commands.txt"
+      register: script_output
+      changed_when: false  # Ensure this task is not marked as changed
+
+    - name: Display script output
+      debug:
+        msg: "{{ script_output.stdout }}"
+      when: script_output.stdout is defined
